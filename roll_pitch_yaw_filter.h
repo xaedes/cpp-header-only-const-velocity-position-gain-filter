@@ -117,4 +117,3 @@ public:
     ConstGlobalVelocityFilter<T, TNumOrientation> filter;
 };
 
-#pragma once
