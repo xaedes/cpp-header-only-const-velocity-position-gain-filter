@@ -56,7 +56,7 @@ public:
                 observed_global_velocity[i] = (observed_pos[i] - last_pos_measurement[i]) / dt;
             }
             // local velocity resolution
-            orientation_filter.rotate_vector(observed_global_velocity, observed_local_velocity);
+            orientation_filter.rotate_vector_inv(observed_global_velocity, observed_local_velocity);
             // high gain means trust the observation, low gain means trust the predicted values
             velocity_filter.correct(dt, observed_local_velocity);
         }
@@ -76,7 +76,7 @@ public:
         orientation_filter.predict(dt);
 
         T global_velocity[TNum];
-        orientation_filter.rotate_vector_inv(velocity, global_velocity);
+        orientation_filter.rotate_vector(velocity, global_velocity);
 
         T predicted_pos[TNum];
         for (uint i = 0; i < TNum; ++i)
